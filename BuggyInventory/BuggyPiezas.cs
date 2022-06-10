@@ -23,6 +23,7 @@ namespace BuggyInventory
         public BuggyPiezas(int id)
         {
             InitializeComponent();
+            filtro_cb.SelectedIndex = 0;
             idBuggy = id;
         }
 
@@ -31,14 +32,7 @@ namespace BuggyInventory
 
             try
             {
-                cmd = new SqlDataAdapter("SELECT PieId, PieNombre, PieCantidadInve FROM Piezas ", conne);
-                dt = new DataTable();
-                cmd.Fill(dt);
-                dataGridView1.DataSource = dt;
-
-                dt = new DataTable();
-                cmd.Fill(dt);
-                dataGridView1.DataSource = dt;
+                PiezasCargar();
 
                 conne.Open();
 
@@ -59,7 +53,68 @@ namespace BuggyInventory
                 MessageBox.Show("Erro al Cargar los datos");
             }
         }
+        private void PiezasCargar()
+        {
+            try
+            {
+                switch (filtro_cb.SelectedIndex)
+                {
+                    case 0:
+                        cmd = new SqlDataAdapter("SELECT PieId, PieNombre, PieCantidadInve FROM Piezas ", conne);
+                        break;
+                    case 1:
+                        if (!string.IsNullOrEmpty(filtro_tb.Text))
+                            cmd = new SqlDataAdapter($"SELECT PieId, PieNombre, PieCantidadInve FROM Piezas where PieId = {filtro_tb.Text}", conne);
+                        break;
+                    case 2:
+                        if (!string.IsNullOrEmpty(filtro_tb.Text))
+                            cmd = new SqlDataAdapter($"SELECT PieId, PieNombre, PieCantidadInve FROM Piezas where PieNombre like '%{filtro_tb.Text}%'", conne);
+                        break;
+                    default:
+                        cmd = new SqlDataAdapter("SELECT PieId, PieNombre, PieCantidadInve FROM Piezas ", conne);
+                        break;
+                }
+                //dataGridView1.DataSource = null;
+                dt = new DataTable();
+                cmd.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro al Cargar los datos");
+            }
+        }
 
+        private void filtro_cb_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //BuggysCargar();
+            filtro_tb.Text = "";
+        }
+
+
+        private void filtro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (filtro_cb.SelectedIndex)
+            {
+
+                case 1:
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                        (e.KeyChar != '.'))
+                    {
+                        e.Handled = true;
+                    }
+
+                    // only allow one decimal point
+                    if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                    {
+                        e.Handled = true;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
@@ -111,7 +166,7 @@ namespace BuggyInventory
                 dataGridView2.DataSource = null;
                 PiezasAgregadas.Add(pieza);
                 dataGridView2.DataSource = PiezasAgregadas;
-
+                cantidad_tb.Text = "";
             }
             catch (Exception ex)
             {
@@ -164,6 +219,11 @@ namespace BuggyInventory
         private void atras_btn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void filtro_btn_Click(object sender, EventArgs e)
+        {
+            PiezasCargar();
         }
     }
 }

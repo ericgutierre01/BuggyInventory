@@ -19,11 +19,13 @@ namespace BuggyInventory
         public Buggys()
         {
             InitializeComponent();
+            filtro_cb.SelectedIndex = 0;
+            BuggysCargar();
         }
 
         private void Buggys_Load(object sender, EventArgs e)
         {
-            BuggysCargar();
+            //BuggysCargar();
         }
 
         private void BuggysCargar()
@@ -113,12 +115,13 @@ namespace BuggyInventory
         private void atrasPanel_btn_Click(object sender, EventArgs e)
         {
             piezas_panel.Visible = false;
-            piezas_gd.DataSource = null;
+            //piezas_gd.DataSource = null;
         }
 
         private void filtro_cb_SelectedValueChanged(object sender, EventArgs e)
         {
             //BuggysCargar();
+            filtro_tb.Text = "";
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -148,6 +151,25 @@ namespace BuggyInventory
         private void filtro_btn_Click(object sender, EventArgs e)
         {
             BuggysCargar();
+        }
+
+        private void piezas_gd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NuevoBuggy bp = new NuevoBuggy();
+            this.Hide();
+            bp.ShowDialog();
+            this.Show();
+            BuggysCargar();
+        }
+
+        private void piezas_panel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -60,21 +60,26 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(25, 137);
+            this.button1.BackColor = System.Drawing.Color.Blue;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.Location = new System.Drawing.Point(25, 126);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 34);
+            this.button1.Size = new System.Drawing.Size(203, 45);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "Agregar Buggy";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ponerPiezas_btn
             // 
-            this.ponerPiezas_btn.Location = new System.Drawing.Point(305, 137);
+            this.ponerPiezas_btn.BackColor = System.Drawing.Color.SlateBlue;
+            this.ponerPiezas_btn.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.ponerPiezas_btn.Location = new System.Drawing.Point(478, 126);
             this.ponerPiezas_btn.Name = "ponerPiezas_btn";
-            this.ponerPiezas_btn.Size = new System.Drawing.Size(203, 34);
+            this.ponerPiezas_btn.Size = new System.Drawing.Size(150, 45);
             this.ponerPiezas_btn.TabIndex = 1;
             this.ponerPiezas_btn.Text = "Poner Piezas";
-            this.ponerPiezas_btn.UseVisualStyleBackColor = true;
+            this.ponerPiezas_btn.UseVisualStyleBackColor = false;
             this.ponerPiezas_btn.Click += new System.EventHandler(this.ponerPiezas_btn_Click);
             // 
             // dataGridView1
@@ -164,22 +169,25 @@
             // 
             // atrar_btn
             // 
+            this.atrar_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.atrar_btn.Location = new System.Drawing.Point(25, 12);
             this.atrar_btn.Name = "atrar_btn";
             this.atrar_btn.Size = new System.Drawing.Size(112, 34);
             this.atrar_btn.TabIndex = 3;
             this.atrar_btn.Text = "Atras";
-            this.atrar_btn.UseVisualStyleBackColor = true;
+            this.atrar_btn.UseVisualStyleBackColor = false;
             this.atrar_btn.Click += new System.EventHandler(this.atrar_btn_Click);
             // 
             // verPiezas_btn
             // 
-            this.verPiezas_btn.Location = new System.Drawing.Point(585, 137);
+            this.verPiezas_btn.BackColor = System.Drawing.Color.SlateBlue;
+            this.verPiezas_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.verPiezas_btn.Location = new System.Drawing.Point(634, 126);
             this.verPiezas_btn.Name = "verPiezas_btn";
-            this.verPiezas_btn.Size = new System.Drawing.Size(203, 34);
+            this.verPiezas_btn.Size = new System.Drawing.Size(154, 45);
             this.verPiezas_btn.TabIndex = 4;
             this.verPiezas_btn.Text = "Ver Piezas";
-            this.verPiezas_btn.UseVisualStyleBackColor = true;
+            this.verPiezas_btn.UseVisualStyleBackColor = false;
             this.verPiezas_btn.Click += new System.EventHandler(this.verPiezas_btn_Click);
             // 
             // filtro_cb
@@ -219,6 +227,7 @@
             this.piezas_gd.RowTemplate.Height = 33;
             this.piezas_gd.Size = new System.Drawing.Size(776, 358);
             this.piezas_gd.TabIndex = 0;
+            this.piezas_gd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.piezas_gd_CellContentClick);
             // 
             // PieId
             // 
@@ -283,12 +292,14 @@
             // 
             // atrasPanel_btn
             // 
+            this.atrasPanel_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.atrasPanel_btn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.atrasPanel_btn.Location = new System.Drawing.Point(24, 25);
             this.atrasPanel_btn.Name = "atrasPanel_btn";
             this.atrasPanel_btn.Size = new System.Drawing.Size(112, 34);
             this.atrasPanel_btn.TabIndex = 2;
             this.atrasPanel_btn.Text = "Atras";
-            this.atrasPanel_btn.UseVisualStyleBackColor = true;
+            this.atrasPanel_btn.UseVisualStyleBackColor = false;
             this.atrasPanel_btn.Click += new System.EventHandler(this.atrasPanel_btn_Click);
             // 
             // piezas_panel
@@ -296,12 +307,13 @@
             this.piezas_panel.Controls.Add(this.atrasPanel_btn);
             this.piezas_panel.Controls.Add(this.nombreBuggy_lb);
             this.piezas_panel.Controls.Add(this.piezas_gd);
-            this.piezas_panel.Location = new System.Drawing.Point(0, 12);
+            this.piezas_panel.Location = new System.Drawing.Point(0, -1);
             this.piezas_panel.Name = "piezas_panel";
-            this.piezas_panel.Size = new System.Drawing.Size(800, 438);
+            this.piezas_panel.Size = new System.Drawing.Size(800, 451);
             this.piezas_panel.TabIndex = 5;
             this.piezas_panel.TabStop = true;
             this.piezas_panel.Visible = false;
+            this.piezas_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.piezas_panel_Paint);
             // 
             // filtro_tb
             // 
@@ -309,6 +321,7 @@
             this.filtro_tb.Name = "filtro_tb";
             this.filtro_tb.Size = new System.Drawing.Size(150, 31);
             this.filtro_tb.TabIndex = 6;
+            this.filtro_tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // filtro_btn
             // 

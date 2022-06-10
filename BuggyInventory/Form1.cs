@@ -35,12 +35,46 @@ namespace BuggyInventory
             this.Hide();
             fm.ShowDialog();
             this.Show();
-            //this.Close();
         }
 
+
+        async void irPiezas()
+        {
+            Piezas fm = new Piezas();
+            this.Hide();
+            fm.ShowDialog();
+            this.Show();
+        }
         private void label1_Click(object sender, EventArgs e)
         {
             irBuggys();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            irPiezas();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            irPiezas();
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            irBuggys();
+
+        }
+
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            irPiezas();
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+            irPiezas();
         }
     }
 }
